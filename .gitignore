@@ -1,0 +1,12 @@
+# build outputs
+/edge/build/
+/control-plane/bin/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+# editors
+.vscode/
+.idea/
+.DS_Store
