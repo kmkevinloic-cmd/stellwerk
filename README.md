@@ -53,7 +53,12 @@ cd control-plane && go run ./cmd/stellwerkd --udp :7400 --http :7401
 # 2. in another terminal: 200 virtual robots, 2 % packet loss, random faults
 cd sim && python -m stellwerk_sim --nodes 200 --loss 0.02 --fault-rate 0.01
 
-# 3. look at the fleet
+# 3. optionally, one real C++ node with injected faults
+#    (send it SIGUSR1 to release it from MINIMAL_RISK)
+make build
+./edge/build/edge_node --node-id amr-cpp-01 --latency-fault-at 5 --camera-stall-at 15
+
+# 4. look at the fleet
 curl -s localhost:7401/v1/fleet/summary | python -m json.tool
 curl -s 'localhost:7401/v1/nodes?liveness=LOST'
 ```
