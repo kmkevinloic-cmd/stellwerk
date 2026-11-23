@@ -7,9 +7,10 @@ They are coupled only by a small, versioned heartbeat protocol
 
 ## Edge node (`edge/`, C++17)
 
-The edge library is linked into the robot's main process. It has no dynamic
-allocation on the supervision path after start-up and no dependency beyond the
-C++ standard library and POSIX sockets.
+The edge library is linked into the robot's main process. Faults and
+watchdogs are registered at start-up; after that, `Supervisor::cycle()` does
+not allocate. The library depends only on the C++ standard library and POSIX
+sockets.
 
 ```
             kick()                    report(pass|fail)
