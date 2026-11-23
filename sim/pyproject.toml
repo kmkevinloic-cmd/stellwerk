@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stellwerk-sim"
+version = "0.1.0"
+description = "Fleet simulator for the Stellwerk edge-AI fleet runtime"
+readme = "../README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+stellwerk-sim = "stellwerk_sim.__main__:main"
+
+[tool.setuptools]
+packages = ["stellwerk_sim"]
