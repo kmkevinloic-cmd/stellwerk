@@ -34,6 +34,9 @@ scripts/version.sh bump 0.2.0    # update VERSION and every component
 2. `scripts/version.sh bump X.Y.Z`, then `make test`.
 3. Commit: `git commit -am "release: vX.Y.Z"`.
 4. Tag and push: `git tag -a vX.Y.Z -m "Stellwerk vX.Y.Z" && git push origin main vX.Y.Z`.
+   Alternatively, push `main` and create the release on GitHub (Releases →
+   Draft a new release → tag `vX.Y.Z` on `main` → Publish); the workflow
+   then fills in the notes and attaches the binaries.
 
 Pushing the tag runs the release workflow, which checks that the tag matches
 `VERSION`, runs the tests, builds `stellwerkd` for Linux (amd64, arm64) and
