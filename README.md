@@ -94,6 +94,13 @@ make test
 - [ ] Prometheus metrics and a live fleet dashboard
 - [ ] ROS 2 bridge
 
+## Versioning
+
+Stellwerk uses [Semantic Versioning](https://semver.org/), with one version
+for the whole repository, kept in [`VERSION`](VERSION). Changes are listed in
+[CHANGELOG.md](CHANGELOG.md); the release process is in
+[docs/RELEASING.md](docs/RELEASING.md).
+
 ## License
 
 Apache License 2.0. See [LICENSE](LICENSE).

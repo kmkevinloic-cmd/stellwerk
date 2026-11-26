@@ -18,6 +18,10 @@ import (
 	"stellwerk/control-plane/internal/ingest"
 )
 
+// version is the release version. The Makefile and release workflow set it
+// from the repository's VERSION file with -ldflags "-X main.version=...".
+var version = "0.1.0"
+
 func main() {
 	if err := run(); err != nil {
 		fmt.Fprintln(os.Stderr, "stellwerkd:", err)
@@ -32,7 +36,13 @@ func run() error {
 	suspect := flag.Int("suspect-after", 3, "silent periods before a node is SUSPECT")
 	lost := flag.Int("lost-after", 10, "silent periods before a node is LOST")
 	debug := flag.Bool("debug", false, "log rejected heartbeats")
+	showVersion := flag.Bool("version", false, "print the version and exit")
 	flag.Parse()
+
+	if *showVersion {
+		fmt.Println("stellwerkd", version)
+		return nil
+	}
 
 	level := slog.LevelInfo
 	if *debug {
@@ -64,7 +74,7 @@ func run() error {
 	}()
 	go superviseLiveness(ctx, reg, *tick, log)
 
-	log.Info("stellwerkd started", "udp", listener.Addr(), "http", *httpAddr)
+	log.Info("stellwerkd started", "version", version, "udp", listener.Addr(), "http", *httpAddr)
 
 	select {
 	case <-ctx.Done():
